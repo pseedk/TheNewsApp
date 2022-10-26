@@ -22,7 +22,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.pseedk.thenewsapp.ui.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="article"
+            app:argType="com.pseedk.thenewsapp.models.Article" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.pseedk.thenewsapp.ui.favorite.FavoriteFragment"
