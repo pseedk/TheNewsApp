@@ -9,17 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.pseedk.thenewsapp.R
 import com.pseedk.thenewsapp.databinding.FragmentDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private val bundleArgs: DetailsFragmentArgs by navArgs()
+    private val viewModel by viewModels<DetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +60,9 @@ class DetailsFragment : Fragment() {
                     } catch (e: Exception) {
                         Snackbar.make(view, "Doesn't have any browser to view the document!", Snackbar.LENGTH_SHORT).show()
                     }
+                }
+                binding.iconFavorite.setOnClickListener {
+                    viewModel.saveFavoriteArticle(article)
                 }
             }
         }
